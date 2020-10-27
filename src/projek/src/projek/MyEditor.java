@@ -338,8 +338,7 @@ public class MyEditor {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            Color newColor
-                    = JColorChooser.showDialog(frame__, "Choose a color", Color.BLACK);
+            Color newColor = JColorChooser.showDialog(frame__, "Choose a color", Color.BLACK);
             if (newColor == null) {
 
                 editor__.requestFocusInWindow();
@@ -358,9 +357,7 @@ public class MyEditor {
         @Override
         public void itemStateChanged(ItemEvent e) {
 
-            if ((e.getStateChange() != ItemEvent.SELECTED)
-                    || (textAlignComboBox__.getSelectedIndex() == 0)) {
-
+            if ((e.getStateChange() != ItemEvent.SELECTED)|| (textAlignComboBox__.getSelectedIndex() == 0)) {
                 return;
             }
 
