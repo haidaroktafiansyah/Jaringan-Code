@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -34,15 +35,13 @@ import javax.swing.text.StyledEditorKit.UnderlineAction;
  *
  * @author haida
  */
-
-
 public class menu extends javax.swing.JFrame {
 
     /**
      * Creates new form menu
      */
     public menu() {
-        
+
         initComponents();
     }
 
@@ -79,6 +78,8 @@ public class menu extends javax.swing.JFrame {
         boldB = new javax.swing.JButton(new BoldAction());
         italicB = new javax.swing.JButton(new ItalicAction());
         underlineB = new javax.swing.JButton(new UnderlineAction());
+        countB = new javax.swing.JButton();
+        bgColorB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,11 +119,10 @@ public class menu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(kata)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(karakter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(kalimat)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(kalimat))
         );
 
         spesification.setText("Spesification :");
@@ -131,11 +131,11 @@ public class menu extends javax.swing.JFrame {
         panelColor.setLayout(panelColorLayout);
         panelColorLayout.setHorizontalGroup(
             panelColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 62, Short.MAX_VALUE)
+            .addGap(0, 80, Short.MAX_VALUE)
         );
         panelColorLayout.setVerticalGroup(
             panelColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 34, Short.MAX_VALUE)
         );
 
         colorPicker.setText("Change Color");
@@ -158,7 +158,7 @@ public class menu extends javax.swing.JFrame {
         textPreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textPreview.setText("Text Priview");
 
-        colorApply.setText("Apply");
+        colorApply.setText("Apply Word");
         colorApply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 colorApplyActionPerformed(evt);
@@ -222,33 +222,51 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        countB.setText("Count");
+        countB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countBActionPerformed(evt);
+            }
+        });
+
+        bgColorB.setText("Apply BG");
+        bgColorB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bgColorBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(spesification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(openB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(saveB)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(colorPicker)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(spesification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(openB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addComponent(saveB))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(countB)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(colorApply))
-                            .addComponent(panelColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(panelColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(colorPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(colorApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bgColorB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
@@ -301,7 +319,6 @@ public class menu extends javax.swing.JFrame {
                                     .addComponent(jLabel1))))
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -310,18 +327,23 @@ public class menu extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(pasteB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(colorApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fontApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(fontApply))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(panelColor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(italicB))
-                                        .addGap(6, 6, 6)))
-                                .addComponent(underlineB))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(italicB))
+                                .addGap(6, 6, 6)
+                                .addComponent(underlineB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(countB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(colorApply)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bgColorB))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,7 +351,7 @@ public class menu extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(boldB)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -337,15 +359,8 @@ public class menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
-    
-    
-    
-    
     //open and count and write file
-    
+
     private void openBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setAcceptAllFileFilterUsed(false);
@@ -398,19 +413,19 @@ public class menu extends javax.swing.JFrame {
         UIManager.put("FileChooser.openButtonText", "Save");
         SwingUtilities.updateComponentTreeUI(chooser);
         chooser.showOpenDialog(null);
-        
+
         File file = chooser.getSelectedFile();
         String pathfile = file.getAbsolutePath();
         String data = this.textPanel.getText();
         File fileToSave = chooser.getSelectedFile();
         writefile(fileToSave.getAbsolutePath(), data);
     }//GEN-LAST:event_saveBActionPerformed
-    
+
     public void writefile(String nama, String data) {
 
         try {
             String str = data;
-            try ( BufferedWriter writer = new BufferedWriter(new FileWriter( nama + ".txt"))) {
+            try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".txt"))) {
                 writer.write(str);
             }
             System.out.println("File has been written");
@@ -420,16 +435,8 @@ public class menu extends javax.swing.JFrame {
         }
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     //coloring file
-    
     private Color color;
     private void colorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerActionPerformed
         color = JColorChooser.showDialog(this, "Select a Color", color);
@@ -437,18 +444,11 @@ public class menu extends javax.swing.JFrame {
             this.panelColor.setBackground(color);
         }
     }//GEN-LAST:event_colorPickerActionPerformed
-    
-    
-    
-    
-    
-    
-    
+
     //font chooser
-    
     JFontChooser fc = new JFontChooser();
     private void fontChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontChooserActionPerformed
-        
+
         JOptionPane.showMessageDialog(null, fc, "Select Font", JOptionPane.PLAIN_MESSAGE);
         this.textPreview.setFont(fc.getPreviewFont());
     }//GEN-LAST:event_fontChooserActionPerformed
@@ -456,23 +456,17 @@ public class menu extends javax.swing.JFrame {
     private void colorApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorApplyActionPerformed
 
         SimpleAttributeSet attr = new SimpleAttributeSet();
-            StyleConstants.setForeground(attr, color);
-            textPanel.setCharacterAttributes(attr, false);
+        StyleConstants.setForeground(attr, color);
+        textPanel.setCharacterAttributes(attr, false);
     }//GEN-LAST:event_colorApplyActionPerformed
 
     private void fontApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontApplyActionPerformed
 
-           textPanel.setFont(fc.getPreviewFont());
+        textPanel.setFont(fc.getPreviewFont());
     }//GEN-LAST:event_fontApplyActionPerformed
-    
-    
-    
-    
-    
-    
-    
+
     //utility action cut copy paste
-    
+
     private void CutBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CutBActionPerformed
         // TODO add your handling code here:
         textPanel.requestFocusInWindow();
@@ -488,15 +482,8 @@ public class menu extends javax.swing.JFrame {
         textPanel.requestFocusInWindow();
     }//GEN-LAST:event_pasteBActionPerformed
 
-    
-    
-    
-    
-    
-    
-    
     // utility font action
-    
+
     private void boldBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boldBActionPerformed
         // TODO add your handling code here:
         textPanel.requestFocusInWindow();
@@ -512,6 +499,39 @@ public class menu extends javax.swing.JFrame {
         textPanel.requestFocusInWindow();
     }//GEN-LAST:event_underlineBActionPerformed
 
+    //count button
+
+    private void countBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countBActionPerformed
+        // TODO add your handling code here:
+        String data = textPanel.getText();
+
+        
+        var byteArrayInputStream = new ByteArrayInputStream(data.getBytes());
+
+        int karakter = 0;
+        int kata = 1;
+        int kalimat = 0;
+        try ( PushbackInputStream pis = new PushbackInputStream(byteArrayInputStream)) {
+            byte byteData;
+            while ((byteData = (byte) pis.read()) != -1) {
+                //System.out.print((char) byteData);
+                karakter++;
+                if ((char) byteData == ' ' || (char) byteData == '\n') {
+                    kata++;
+                }
+                if ((char) byteData == '.') {
+                    kalimat++;
+                }
+            }
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+        this.kalimat.setText("Kalimat : " + kalimat);
+        this.karakter.setText("Karakter : " + karakter);
+        this.kata.setText("Kata : " + kata);
+    }//GEN-LAST:event_countBActionPerformed
+
     
     
     
@@ -519,6 +539,14 @@ public class menu extends javax.swing.JFrame {
     
     
     
+    //change BG color
+    private void bgColorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgColorBActionPerformed
+        // TODO add your handling code here:
+        SimpleAttributeSet attr = new SimpleAttributeSet();
+        StyleConstants.setBackground(attr, color);
+        textPanel.setCharacterAttributes(attr, false);
+    }//GEN-LAST:event_bgColorBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -557,9 +585,11 @@ public class menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CopyB;
     private javax.swing.JButton CutB;
+    private javax.swing.JButton bgColorB;
     private javax.swing.JButton boldB;
     private javax.swing.JButton colorApply;
     private javax.swing.JButton colorPicker;
+    private javax.swing.JButton countB;
     private javax.swing.JButton fontApply;
     private javax.swing.JButton fontChooser;
     private javax.swing.JButton italicB;
