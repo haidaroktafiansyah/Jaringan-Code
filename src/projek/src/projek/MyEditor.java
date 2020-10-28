@@ -628,6 +628,7 @@ public class MyEditor {
                 }
 
                 // Get the updated para element details after bulleting
+                
                 paraEle = doc.getParagraphElement(paraEleStart);
                 paraEleEnd = paraEle.getEndOffset();
 
