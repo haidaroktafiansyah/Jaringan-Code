@@ -357,7 +357,7 @@ public class MyEditor {
         @Override
         public void itemStateChanged(ItemEvent e) {
 
-            if ((e.getStateChange() != ItemEvent.SELECTED)|| (textAlignComboBox__.getSelectedIndex() == 0)) {
+            if ((e.getStateChange() != ItemEvent.SELECTED) || (textAlignComboBox__.getSelectedIndex() == 0)) {
                 return;
             }
 
@@ -628,7 +628,6 @@ public class MyEditor {
                 }
 
                 // Get the updated para element details after bulleting
-                
                 paraEle = doc.getParagraphElement(paraEleStart);
                 paraEleEnd = paraEle.getEndOffset();
 

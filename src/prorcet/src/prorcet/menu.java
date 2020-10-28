@@ -7,6 +7,8 @@ package prorcet;
 
 import com.ozten.font.JFontChooser;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,20 +20,29 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.DefaultEditorKit.CopyAction;
+import javax.swing.text.DefaultEditorKit.CutAction;
+import javax.swing.text.DefaultEditorKit.PasteAction;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledEditorKit;
+import javax.swing.text.StyledEditorKit.BoldAction;
+import javax.swing.text.StyledEditorKit.ItalicAction;
+import javax.swing.text.StyledEditorKit.UnderlineAction;
 
 /**
  *
  * @author haida
  */
+
+
 public class menu extends javax.swing.JFrame {
 
     /**
      * Creates new form menu
      */
     public menu() {
+        
         initComponents();
     }
 
@@ -60,10 +71,14 @@ public class menu extends javax.swing.JFrame {
         textPreview = new javax.swing.JLabel();
         colorApply = new javax.swing.JButton();
         fontApply = new javax.swing.JButton();
-        CutB = new javax.swing.JButton();
-        CopyB = new javax.swing.JButton();
-        pasteB = new javax.swing.JButton();
+        CutB = new javax.swing.JButton(new CutAction());
+        CopyB = new javax.swing.JButton(new CopyAction());
+        pasteB = new javax.swing.JButton(new PasteAction());
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        boldB = new javax.swing.JButton(new BoldAction());
+        italicB = new javax.swing.JButton(new ItalicAction());
+        underlineB = new javax.swing.JButton(new UnderlineAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +135,7 @@ public class menu extends javax.swing.JFrame {
         );
         panelColorLayout.setVerticalGroup(
             panelColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
 
         colorPicker.setText("Change Color");
@@ -158,13 +173,54 @@ public class menu extends javax.swing.JFrame {
         });
 
         CutB.setText("Cut");
+        CutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CutBActionPerformed(evt);
+            }
+        });
 
         CopyB.setText("Copy");
+        CopyB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopyBActionPerformed(evt);
+            }
+        });
 
         pasteB.setText("Paste");
+        pasteB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteBActionPerformed(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Utility");
+        jLabel2.setText("Utility :");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Font Utility");
+
+        boldB.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        boldB.setText("Bold");
+        boldB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boldBActionPerformed(evt);
+            }
+        });
+
+        italicB.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        italicB.setText("Italic");
+        italicB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                italicBActionPerformed(evt);
+            }
+        });
+
+        underlineB.setText("UnderLine");
+        underlineB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                underlineBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,65 +249,87 @@ public class menu extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(colorApply))
                             .addComponent(panelColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(fontApply)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fontApply)
-                                .addGap(81, 81, 81)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pasteB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CopyB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fontChooser)
-                        .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(91, 91, 91)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(boldB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(italicB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(underlineB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(20, 20, 20))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(fontChooser)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CutB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(840, 840, 840))
+                            .addComponent(CopyB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CutB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pasteB))
+                        .addGap(691, 691, 691))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fontChooser)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(openB)
-                        .addComponent(saveB)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(CutB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(openB)
+                                    .addComponent(saveB))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(spesification)
+                                    .addComponent(jLabel1))))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CopyB)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addComponent(pasteB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(colorApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fontApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(panelColor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(italicB))
+                                        .addGap(6, 6, 6)))
+                                .addComponent(underlineB))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(spesification)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fontChooser)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CutB)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(textPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                .addComponent(CopyB))
-                            .addComponent(panelColor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(colorApply)
-                            .addComponent(fontApply)
-                            .addComponent(pasteB))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(boldB)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -259,6 +337,15 @@ public class menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
+    
+    
+    
+    //open and count and write file
+    
     private void openBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setAcceptAllFileFilterUsed(false);
@@ -333,6 +420,16 @@ public class menu extends javax.swing.JFrame {
         }
 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    //coloring file
+    
     private Color color;
     private void colorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerActionPerformed
         color = JColorChooser.showDialog(this, "Select a Color", color);
@@ -340,6 +437,15 @@ public class menu extends javax.swing.JFrame {
             this.panelColor.setBackground(color);
         }
     }//GEN-LAST:event_colorPickerActionPerformed
+    
+    
+    
+    
+    
+    
+    
+    //font chooser
+    
     JFontChooser fc = new JFontChooser();
     private void fontChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontChooserActionPerformed
         
@@ -348,17 +454,71 @@ public class menu extends javax.swing.JFrame {
     }//GEN-LAST:event_fontChooserActionPerformed
 
     private void colorApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorApplyActionPerformed
-//        textPanel.getSelectedText();
+
         SimpleAttributeSet attr = new SimpleAttributeSet();
             StyleConstants.setForeground(attr, color);
             textPanel.setCharacterAttributes(attr, false);
     }//GEN-LAST:event_colorApplyActionPerformed
 
     private void fontApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontApplyActionPerformed
-        // TODO add your handling code here:
+
            textPanel.setFont(fc.getPreviewFont());
     }//GEN-LAST:event_fontApplyActionPerformed
+    
+    
+    
+    
+    
+    
+    
+    //utility action cut copy paste
+    
+    private void CutBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CutBActionPerformed
+        // TODO add your handling code here:
+        textPanel.requestFocusInWindow();
+    }//GEN-LAST:event_CutBActionPerformed
 
+    private void CopyBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyBActionPerformed
+        // TODO add your handling code here:
+        textPanel.requestFocusInWindow();
+    }//GEN-LAST:event_CopyBActionPerformed
+
+    private void pasteBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteBActionPerformed
+        // TODO add your handling code here:
+        textPanel.requestFocusInWindow();
+    }//GEN-LAST:event_pasteBActionPerformed
+
+    
+    
+    
+    
+    
+    
+    
+    // utility font action
+    
+    private void boldBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boldBActionPerformed
+        // TODO add your handling code here:
+        textPanel.requestFocusInWindow();
+    }//GEN-LAST:event_boldBActionPerformed
+
+    private void italicBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_italicBActionPerformed
+        // TODO add your handling code here:
+        textPanel.requestFocusInWindow();
+    }//GEN-LAST:event_italicBActionPerformed
+
+    private void underlineBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_underlineBActionPerformed
+        // TODO add your handling code here:
+        textPanel.requestFocusInWindow();
+    }//GEN-LAST:event_underlineBActionPerformed
+
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -397,12 +557,15 @@ public class menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CopyB;
     private javax.swing.JButton CutB;
+    private javax.swing.JButton boldB;
     private javax.swing.JButton colorApply;
     private javax.swing.JButton colorPicker;
     private javax.swing.JButton fontApply;
     private javax.swing.JButton fontChooser;
+    private javax.swing.JButton italicB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kalimat;
@@ -415,5 +578,6 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JLabel spesification;
     private javax.swing.JTextPane textPanel;
     private javax.swing.JLabel textPreview;
+    private javax.swing.JButton underlineB;
     // End of variables declaration//GEN-END:variables
 }
