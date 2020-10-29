@@ -81,7 +81,8 @@ public class menu extends javax.swing.JFrame {
         boldB = new javax.swing.JButton(new BoldAction());
         italicB = new javax.swing.JButton(new ItalicAction());
         underlineB = new javax.swing.JButton(new UnderlineAction());
-        bgColorB = new javax.swing.JButton();
+        hlColorB = new javax.swing.JButton();
+        bgButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,7 +141,7 @@ public class menu extends javax.swing.JFrame {
         );
         panelColorLayout.setVerticalGroup(
             panelColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 34, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         colorPicker.setText("Change Color");
@@ -227,10 +228,17 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        bgColorB.setText("Apply BG");
-        bgColorB.addActionListener(new java.awt.event.ActionListener() {
+        hlColorB.setText("Higlight Word");
+        hlColorB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bgColorBActionPerformed(evt);
+                hlColorBActionPerformed(evt);
+            }
+        });
+
+        bgButton.setText("Change BG");
+        bgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bgButtonActionPerformed(evt);
             }
         });
 
@@ -253,18 +261,14 @@ public class menu extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(colorPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(colorApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bgColorB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(9, 9, 9)
+                    .addComponent(hlColorB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bgButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(fontApply)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
+                                .addGap(42, 42, 42)
                                 .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +281,7 @@ public class menu extends javax.swing.JFrame {
                                         .addComponent(underlineB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(20, 20, 20))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
+                                .addGap(74, 74, 74)
                                 .addComponent(fontChooser)
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,7 +290,11 @@ public class menu extends javax.swing.JFrame {
                             .addComponent(CopyB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CutB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pasteB))
-                        .addGap(691, 691, 691))))
+                        .addGap(691, 691, 691))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(fontApply)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,49 +302,53 @@ public class menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(CutB))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(openB)
-                                    .addComponent(saveB))
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(spesification)
-                                    .addComponent(jLabel1))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(openB)
+                            .addComponent(saveB))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spesification)
+                            .addComponent(jLabel1))
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CopyB)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addComponent(pasteB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fontApply))
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(italicB))
-                                .addGap(6, 6, 6)
-                                .addComponent(underlineB))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(panelColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panelColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(colorApply)
+                                .addGap(18, 18, 18)
+                                .addComponent(hlColorB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bgColorB))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(bgButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(italicB)
+                                            .addComponent(CopyB))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(underlineB)
+                                            .addComponent(pasteB))
+                                        .addGap(0, 9, Short.MAX_VALUE))
+                                    .addComponent(textPreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(fontApply)
+                                .addGap(6, 6, 6))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fontChooser)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(boldB)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(boldB)
+                            .addComponent(CutB))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -351,7 +363,9 @@ public class menu extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
+        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("java", "java");
         chooser.addChoosableFileFilter(filter);
+        chooser.addChoosableFileFilter(filter2);
         chooser.showOpenDialog(null);
         File file = chooser.getSelectedFile();
         String pathfile = file.getAbsolutePath();
@@ -395,7 +409,9 @@ public class menu extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
+        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("java", "java");
         chooser.addChoosableFileFilter(filter);
+        chooser.addChoosableFileFilter(filter2);
         UIManager.put("FileChooser.openButtonText", "Save");
         SwingUtilities.updateComponentTreeUI(chooser);
         chooser.showOpenDialog(null);
@@ -408,13 +424,12 @@ public class menu extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBActionPerformed
 
     public void writefile(String nama, String data) {
-
+    
         try {
             String str = data;
             try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".txt"))) {
                 writer.write(str);
             }
-            System.out.println("File has been written");
 
         } catch (Exception e) {
             System.out.println("Could not create file");
@@ -488,8 +503,7 @@ public class menu extends javax.swing.JFrame {
         textPanel.requestFocusInWindow();
     }//GEN-LAST:event_underlineBActionPerformed
 
-   
-    private void liveCount(){
+    private void liveCount() {
         this.textPanel.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent arg0) {
@@ -524,15 +538,15 @@ public class menu extends javax.swing.JFrame {
                     }
                 }
 
-                kalimat.setText("Kalimat : "+String.valueOf(jumlahBaris));
-                kata.setText("kata : "+String.valueOf(jumlahKata));
-                karakter.setText("karakter : "+String.valueOf(jumlahKarakter));
+                kalimat.setText("Kalimat : " + String.valueOf(jumlahBaris));
+                kata.setText("kata : " + String.valueOf(jumlahKata));
+                karakter.setText("karakter : " + String.valueOf(jumlahKarakter));
             }
         });
     }
-    
+
     //change BG color
-    private void bgColorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgColorBActionPerformed
+    private void hlColorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hlColorBActionPerformed
         // TODO add your handling code here:
 
         if (color != null) {
@@ -540,7 +554,12 @@ public class menu extends javax.swing.JFrame {
             StyleConstants.setBackground(attr, color);
             textPanel.setCharacterAttributes(attr, false);
         }
-    }//GEN-LAST:event_bgColorBActionPerformed
+    }//GEN-LAST:event_hlColorBActionPerformed
+
+    private void bgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgButtonActionPerformed
+        // TODO add your handling code here:
+        if(color!=null) UIManager.put("TextPane.disabledBackground", color);;
+    }//GEN-LAST:event_bgButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -580,12 +599,13 @@ public class menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CopyB;
     private javax.swing.JButton CutB;
-    private javax.swing.JButton bgColorB;
+    private javax.swing.JButton bgButton;
     private javax.swing.JButton boldB;
     private javax.swing.JButton colorApply;
     private javax.swing.JButton colorPicker;
     private javax.swing.JButton fontApply;
     private javax.swing.JButton fontChooser;
+    private javax.swing.JButton hlColorB;
     private javax.swing.JButton italicB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
