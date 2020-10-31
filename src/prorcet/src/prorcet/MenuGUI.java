@@ -9,7 +9,10 @@ import com.ozten.font.JFontChooser;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.PushbackInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -33,7 +36,8 @@ public class MenuGUI extends javax.swing.JFrame {
     /**
      * Creates new form menu
      */
-    public MenuGUI() {
+    public MenuGUI() throws IOException {
+        this.fh = new FileControl();
         initComponents();
         liveCount();
     }
@@ -342,7 +346,7 @@ public class MenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //open and write file
-    FileHandler fh = new FileHandler();
+    FileControl fh;
 
 
     private void openBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed
@@ -479,7 +483,11 @@ public class MenuGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MenuGUI().setVisible(true);
+            try {
+                new MenuGUI().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 

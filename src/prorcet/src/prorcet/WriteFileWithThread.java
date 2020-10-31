@@ -15,12 +15,12 @@ import java.util.logging.Logger;
  *
  * @author dharma
  */
-public class WriteFile extends Thread {
+public class WriteFileWithThread extends Thread {
 
     private final String nama;
     private final String data;
 
-    public WriteFile(String nama, String data) {
+    public WriteFileWithThread(String nama, String data) {
         this.nama = nama;
         this.data = data;
     }
