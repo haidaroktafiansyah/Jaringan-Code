@@ -6,8 +6,10 @@
 package prorcet;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,36 +20,27 @@ import java.util.logging.Logger;
  */
 public class WriteFile extends Thread {
 
-    private final String text;
-    private final String file;
+    private final String nama;
+    private final String data;
 
-    public WriteFile(String text, String file) {
-        this.text = text;
-        this.file = file;
+    public WriteFile(String nama, String data) {
+        this.nama = nama;
+        this.data = data;
     }
 
     @Override
     public void run() {
-        BufferedOutputStream writer = null;
         try {
-            if (!text.isEmpty() && !text.isBlank()) {
-                writer = new BufferedOutputStream(new FileOutputStream(file));
-                writer.write(text.getBytes());
+            String str = data;
+            try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".txt"))) {
+                writer.write(str);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.flush();
-                    writer.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+
+        } catch (Exception e) {
+            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Could not create file");
         }
+
     }
 
 }

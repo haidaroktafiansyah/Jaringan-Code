@@ -422,19 +422,11 @@ public class menu extends javax.swing.JFrame {
         File fileToSave = chooser.getSelectedFile();
         writefile(fileToSave.getAbsolutePath(), data);
     }//GEN-LAST:event_saveBActionPerformed
-
-    public void writefile(String nama, String data) {
     
-        try {
-            String str = data;
-            try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".txt"))) {
-                writer.write(str);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Could not create file");
-        }
-
+    
+    public void writefile(String nama, String data) {
+        WriteFile wf = new WriteFile(nama,data);
+        wf.start();
     }
 
     //coloring file
@@ -558,7 +550,9 @@ public class menu extends javax.swing.JFrame {
 
     private void bgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgButtonActionPerformed
         // TODO add your handling code here:
-        if(color!=null) UIManager.put("TextPane.disabledBackground", color);;
+        if (color != null) {
+            UIManager.put("TextPane.disabledBackground", color);
+        };
     }//GEN-LAST:event_bgButtonActionPerformed
 
     /**

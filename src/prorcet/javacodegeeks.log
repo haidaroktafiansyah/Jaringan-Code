@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-10-31T09:49:11.129573200Z</date>
+  <millis>1604137751129</millis>
+  <nanos>573200</nanos>
+  <sequence>0</sequence>
+  <logger>prorcet.menu</logger>
+  <level>CONFIG</level>
+  <class>prorcet.menu</class>
+  <method>openBActionPerformed</method>
+  <thread>18</thread>
+  <message>Configuration done.</message>
+</record>
+<record>
+  <date>2020-10-31T09:49:11.150517400Z</date>
+  <millis>1604137751150</millis>
+  <nanos>517400</nanos>
+  <sequence>1</sequence>
+  <logger>prorcet.menu</logger>
+  <level>FINE</level>
+  <class>prorcet.menu</class>
+  <method>openBActionPerformed</method>
+  <thread>18</thread>
+  <message>Finer logged</message>
+</record>
+</log>
