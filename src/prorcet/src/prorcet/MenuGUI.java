@@ -7,6 +7,9 @@ package prorcet;
 
 import com.ozten.font.JFontChooser;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.PushbackInputStream;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -20,7 +23,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.swing.text.StyledEditorKit.ItalicAction;
 import javax.swing.text.StyledEditorKit.UnderlineAction;
-import prorcet.JavaRunner;
 
 /**
  *
@@ -339,16 +341,25 @@ public class MenuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //open and count and write file
-    FileHandler fh;
-    JavaRunner de = new JavaRunner();
-    
+    //open and write file
+    FileHandler fh = new FileHandler();
+
+
     private void openBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed
-        fh.callOpen();
+
+        File file = fh.callOpen();
+        
+        String data = fh.readFile(file);
+
+        this.spesification.setText("Spesification : " + file.getName());
+        this.textPanel.setText(data);
     }//GEN-LAST:event_openBActionPerformed
 
     private void saveBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBActionPerformed
-        fh.callWrite();
+
+        String data = textPanel.getText();
+
+        fh.callWrite(data);
     }//GEN-LAST:event_saveBActionPerformed
 
     //coloring file
@@ -417,8 +428,6 @@ public class MenuGUI extends javax.swing.JFrame {
         textPanel.requestFocusInWindow();
     }//GEN-LAST:event_underlineBActionPerformed
 
-    
-
     //change BG color
     private void hlColorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hlColorBActionPerformed
         // TODO add your handling code here:
@@ -473,9 +482,8 @@ public class MenuGUI extends javax.swing.JFrame {
             new MenuGUI().setVisible(true);
         });
     }
-    
+
     //additional function
-    
     //document livecount
     protected void liveCount() {
 

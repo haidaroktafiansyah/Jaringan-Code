@@ -7,6 +7,7 @@ package prorcet;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,11 +29,11 @@ public class WriteFile extends Thread {
     public void run() {
         try {
             String str = data;
-            try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".txt"))) {
+            try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".java"))) {
                 writer.write(str);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             Logger.getLogger(MenuGUI.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("Could not create file");
         }

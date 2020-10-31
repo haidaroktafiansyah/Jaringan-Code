@@ -12,77 +12,74 @@ import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
  * @author haida
  */
-public class FileHandler extends MenuGUI{
-    
-    
-    protected void callOpen(){
-        JFileChooser chooser = new JFileChooser();
-        chooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
-        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("java", "java");
-        chooser.addChoosableFileFilter(filter);
-        chooser.addChoosableFileFilter(filter2);
-//        chooser.showOpenDialog(null);
-        File file = chooser.getSelectedFile();
-        String pathfile = file.getAbsolutePath();
+public class FileHandler{
 
-        super.spesification.setText("Spesification : " + file.getName());
+    static JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+    
+    protected File callOpen() {
+        
+        File srcFile = chooser();
 
-        String outputfile = null;
-        int karakter = 0;
-        int kata = 1;
-        int kalimat = 1;
-        try ( PushbackInputStream pis = new PushbackInputStream(new FileInputStream(pathfile))) {
+        return srcFile;
+    }
+
+    protected void callWrite(String data) {
+        
+        File fileToSave = chooser();
+
+        writefile(fileToSave.getAbsolutePath(), data);
+    }
+
+    
+    private static File chooser() {
+
+        jfc.setDialogTitle("Select an JAVA file");
+        jfc.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("java", "java");
+        jfc.addChoosableFileFilter(filter);
+        int returnValue = jfc.showOpenDialog(null);
+        File selectedFile = null;
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            selectedFile = jfc.getSelectedFile();
+            return selectedFile;
+        } else {
+            File f = new File("decoy.java");
+            return f;
+        }
+    }
+
+    
+    private void writefile(String nama, String data) {
+        WriteFile wf = new WriteFile(nama, data);
+        wf.start();
+    }
+    
+
+    protected String readFile(File file){
+        
+        String data = null;
+        
+        try ( PushbackInputStream pis = new PushbackInputStream(new FileInputStream(file))) {
             byte byteData;
             while ((byteData = (byte) pis.read()) != -1) {
                 //System.out.print((char) byteData);
-                if (outputfile == null) {
-                    outputfile = "" + (char) byteData;
+                if (data == null) {
+                    data = "" + (char) byteData;
                 } else {
-                    outputfile += "" + (char) byteData;
-                }
-
-                karakter++;
-                if ((char) byteData == ' ' || (char) byteData == '\n') {
-                    kata++;
-                }
-                if ((char) byteData == '.') {
-                    kalimat++;
+                    data += "" + (char) byteData;
                 }
             }
         } catch (Exception e2) {
             e2.printStackTrace();
         }
+        
+        return data;
     }
-    
-    JFileChooser chooser2 = new JFileChooser();
-    protected void callWrite(){
-        
-        chooser2.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
-        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("java", "java");
-        chooser2.addChoosableFileFilter(filter);
-        chooser2.addChoosableFileFilter(filter2);
-        UIManager.put("FileChooser.openButtonText", "Save");
-        SwingUtilities.updateComponentTreeUI(chooser2);
-//        chooser2.showOpenDialog(null);
-        
-        File file = fh.chooser2.getSelectedFile();
-        String pathfile = file.getAbsolutePath();
-        String data = super.textPanel.getText();
-        File fileToSave = fh.chooser2.getSelectedFile();
-        
-        writefile(fileToSave.getAbsolutePath(), data);
-    }
-        
-    public void writefile(String nama, String data) {
-        WriteFile wf = new WriteFile(nama,data);
-        wf.start();
-    }
-
 }
