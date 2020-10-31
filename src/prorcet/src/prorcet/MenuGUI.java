@@ -7,43 +7,31 @@ package prorcet;
 
 import com.ozten.font.JFontChooser;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.PushbackInputStream;
 import javax.swing.JColorChooser;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultEditorKit.CopyAction;
 import javax.swing.text.DefaultEditorKit.CutAction;
 import javax.swing.text.DefaultEditorKit.PasteAction;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledEditorKit;
 import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.swing.text.StyledEditorKit.ItalicAction;
 import javax.swing.text.StyledEditorKit.UnderlineAction;
+import prorcet.JavaRunner;
 
 /**
  *
  * @author haida
  */
-public class menu extends javax.swing.JFrame {
+public class MenuGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form menu
      */
-    public menu() {
-
+    public MenuGUI() {
         initComponents();
         liveCount();
     }
@@ -200,7 +188,7 @@ public class menu extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Utility :");
+        jLabel2.setText("Text utility");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Font Utility");
@@ -271,15 +259,11 @@ public class menu extends javax.swing.JFrame {
                                 .addGap(42, 42, 42)
                                 .addComponent(textPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(91, 91, 91)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(boldB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(italicB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(underlineB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(20, 20, 20))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(boldB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(italicB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(underlineB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(87, 87, 87))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(74, 74, 74)
                                 .addComponent(fontChooser)
@@ -289,7 +273,8 @@ public class menu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CopyB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CutB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pasteB))
+                            .addComponent(pasteB)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(691, 691, 691))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(92, 92, 92)
@@ -312,10 +297,6 @@ public class menu extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(panelColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -344,7 +325,8 @@ public class menu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fontChooser)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(boldB)
@@ -358,76 +340,16 @@ public class menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //open and count and write file
-
+    FileHandler fh;
+    JavaRunner de = new JavaRunner();
+    
     private void openBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
-        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("java", "java");
-        chooser.addChoosableFileFilter(filter);
-        chooser.addChoosableFileFilter(filter2);
-        chooser.showOpenDialog(null);
-        File file = chooser.getSelectedFile();
-        String pathfile = file.getAbsolutePath();
-
-        spesification.setText("Spesification : " + file.getName());
-
-        String outputfile = null;
-        int karakter = 0;
-        int kata = 1;
-        int kalimat = 1;
-        try ( PushbackInputStream pis = new PushbackInputStream(new FileInputStream(pathfile))) {
-            byte byteData;
-            while ((byteData = (byte) pis.read()) != -1) {
-                //System.out.print((char) byteData);
-                if (outputfile == null) {
-                    outputfile = "" + (char) byteData;
-                } else {
-                    outputfile += "" + (char) byteData;
-                }
-
-                karakter++;
-                if ((char) byteData == ' ' || (char) byteData == '\n') {
-                    kata++;
-                }
-                if ((char) byteData == '.') {
-                    kalimat++;
-                }
-            }
-        } catch (Exception e2) {
-            e2.printStackTrace();
-        }
-
-        this.kalimat.setText("Kalimat : " + kalimat);
-        this.karakter.setText("Karakter : " + karakter);
-        this.kata.setText("Kata : " + kata);
-
-        this.textPanel.setText(outputfile);
+        fh.callOpen();
     }//GEN-LAST:event_openBActionPerformed
 
     private void saveBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
-        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("java", "java");
-        chooser.addChoosableFileFilter(filter);
-        chooser.addChoosableFileFilter(filter2);
-        UIManager.put("FileChooser.openButtonText", "Save");
-        SwingUtilities.updateComponentTreeUI(chooser);
-        chooser.showOpenDialog(null);
-
-        File file = chooser.getSelectedFile();
-        String pathfile = file.getAbsolutePath();
-        String data = this.textPanel.getText();
-        File fileToSave = chooser.getSelectedFile();
-        writefile(fileToSave.getAbsolutePath(), data);
+        fh.callWrite();
     }//GEN-LAST:event_saveBActionPerformed
-    
-    
-    public void writefile(String nama, String data) {
-        WriteFile wf = new WriteFile(nama,data);
-        wf.start();
-    }
 
     //coloring file
     private Color color;
@@ -495,8 +417,69 @@ public class menu extends javax.swing.JFrame {
         textPanel.requestFocusInWindow();
     }//GEN-LAST:event_underlineBActionPerformed
 
-    private void liveCount() {
-        this.textPanel.getDocument().addDocumentListener(new DocumentListener() {
+    
+
+    //change BG color
+    private void hlColorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hlColorBActionPerformed
+        // TODO add your handling code here:
+
+        if (color != null) {
+            SimpleAttributeSet attr = new SimpleAttributeSet();
+            StyleConstants.setBackground(attr, color);
+            textPanel.setCharacterAttributes(attr, false);
+        }
+    }//GEN-LAST:event_hlColorBActionPerformed
+
+    @SuppressWarnings("empty-statement")
+    private void bgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgButtonActionPerformed
+        // TODO add your handling code here:
+        if (color != null) {
+            UIManager.put("TextPane.disabledBackground", color);
+        };
+    }//GEN-LAST:event_bgButtonActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuGUI().setVisible(true);
+        });
+    }
+    
+    //additional function
+    
+    //document livecount
+    protected void liveCount() {
+
+        textPanel.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent arg0) {
                 listener(arg0);
@@ -537,59 +520,6 @@ public class menu extends javax.swing.JFrame {
         });
     }
 
-    //change BG color
-    private void hlColorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hlColorBActionPerformed
-        // TODO add your handling code here:
-
-        if (color != null) {
-            SimpleAttributeSet attr = new SimpleAttributeSet();
-            StyleConstants.setBackground(attr, color);
-            textPanel.setCharacterAttributes(attr, false);
-        }
-    }//GEN-LAST:event_hlColorBActionPerformed
-
-    private void bgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgButtonActionPerformed
-        // TODO add your handling code here:
-        if (color != null) {
-            UIManager.put("TextPane.disabledBackground", color);
-        };
-    }//GEN-LAST:event_bgButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new menu().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CopyB;
     private javax.swing.JButton CutB;
@@ -606,15 +536,15 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel kalimat;
-    private javax.swing.JLabel karakter;
-    private javax.swing.JLabel kata;
+    protected javax.swing.JLabel kalimat;
+    protected javax.swing.JLabel karakter;
+    protected javax.swing.JLabel kata;
     private javax.swing.JButton openB;
     private javax.swing.JPanel panelColor;
     private javax.swing.JButton pasteB;
     private javax.swing.JButton saveB;
-    private javax.swing.JLabel spesification;
-    private javax.swing.JTextPane textPanel;
+    protected javax.swing.JLabel spesification;
+    protected javax.swing.JTextPane textPanel;
     private javax.swing.JLabel textPreview;
     private javax.swing.JButton underlineB;
     // End of variables declaration//GEN-END:variables

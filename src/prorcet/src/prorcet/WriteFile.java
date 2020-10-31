@@ -5,12 +5,8 @@
  */
 package prorcet;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +33,7 @@ public class WriteFile extends Thread {
             }
 
         } catch (Exception e) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(MenuGUI.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("Could not create file");
         }
 
