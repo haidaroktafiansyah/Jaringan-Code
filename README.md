@@ -1,10 +1,7 @@
 # Pemrograman-Jaringan
 As back up, when may something that i don't want happen 
 
-# Pemrograman Jaringan
-Developing A New Submission Project
-
-# Project For Submission developed with Java
+it's all about Jaringan :) find it by yourself, ask me if you need help
 
 Institusi
 # Institusi
