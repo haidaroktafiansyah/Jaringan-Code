@@ -3,7 +3,6 @@ As back up, when may something that i don't want happen
 
 it's all about Jaringan :) find it by yourself, ask me if you need help
 
-Institusi
 # Institusi
 |  |  |
 |--|--|
