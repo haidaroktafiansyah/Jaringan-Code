@@ -5,6 +5,7 @@
  */
 package prorcet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,21 +15,25 @@ import java.util.logging.Logger;
  * @author haida
  */
 public class JavaRunner {
-
-    protected void callRunner() {
+    
+    private String filepath;
+    
+    protected void callCompile() {
+        
         try {
 
-            // print a message
-            System.out.println("Executing notepad.exe");
-
             // create a process and execute notepad.exe
-            Process process = Runtime.getRuntime().exec("notepad.exe");
-
-            // print another message
-            System.out.println("Notepad should now open.");
-
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"javac "+filepath+"\"");
         } catch (IOException ex) {
             Logger.getLogger(MenuGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public JavaRunner(String path) {
+        this.filepath = path;
+    }
+
+    void callRun() throws IOException {
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"java "+filepath+"\"");
     }
 }

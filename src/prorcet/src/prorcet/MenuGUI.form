@@ -68,11 +68,25 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="CopyB" min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="CutB" min="-2" pref="59" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" pref="57" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="CutB" min="-2" pref="59" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="compileB" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="pasteB" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                              <Component id="runB" min="-2" pref="69" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="691" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="ssB" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="458" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
@@ -117,6 +131,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="italicB" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="CopyB" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ssB" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -139,12 +154,24 @@
                           <Component id="fontChooser" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="boldB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CutB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="boldB" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CutB" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="compileB" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="runB" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -408,6 +435,35 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bgButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Java utility"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="compileB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Compile"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compileBActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="runB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Run"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runBActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ssB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Screenshot"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ssBActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

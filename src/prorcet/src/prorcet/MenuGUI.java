@@ -8,9 +8,7 @@ package prorcet;
 import com.ozten.font.JFontChooser;
 import java.awt.Color;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PushbackInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JColorChooser;
@@ -77,6 +75,10 @@ public class MenuGUI extends javax.swing.JFrame {
         underlineB = new javax.swing.JButton(new UnderlineAction());
         hlColorB = new javax.swing.JButton();
         bgButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        compileB = new javax.swing.JButton();
+        runB = new javax.swing.JButton();
+        ssB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,6 +238,29 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Java utility");
+
+        compileB.setText("Compile");
+        compileB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compileBActionPerformed(evt);
+            }
+        });
+
+        runB.setText("Run");
+        runB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runBActionPerformed(evt);
+            }
+        });
+
+        ssB.setText("Screenshot");
+        ssB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ssBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -278,10 +303,21 @@ public class MenuGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CopyB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CutB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CutB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(compileB))
                             .addComponent(pasteB)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(691, 691, 691))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(runB, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42)
+                        .addComponent(ssB)
+                        .addGap(458, 458, 458))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(fontApply)
@@ -317,7 +353,8 @@ public class MenuGUI extends javax.swing.JFrame {
                                         .addGap(24, 24, 24)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(italicB)
-                                            .addComponent(CopyB))
+                                            .addComponent(CopyB)
+                                            .addComponent(ssB))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(underlineB)
@@ -332,11 +369,20 @@ public class MenuGUI extends javax.swing.JFrame {
                             .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fontChooser)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(boldB)
-                            .addComponent(CutB))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(boldB)
+                                    .addComponent(CutB)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(compileB)))
+                        .addGap(30, 30, 30)
+                        .addComponent(runB)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -347,12 +393,12 @@ public class MenuGUI extends javax.swing.JFrame {
 
     //open and write file
     FileControl fh;
-
+    File file = null;
 
     private void openBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed
 
-        File file = fh.callOpen();
-        
+        file = fh.callOpen();
+
         String data = fh.readFile(file);
 
         this.spesification.setText("Spesification : " + file.getName());
@@ -451,6 +497,30 @@ public class MenuGUI extends javax.swing.JFrame {
         };
     }//GEN-LAST:event_bgButtonActionPerformed
 
+    private void compileBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileBActionPerformed
+        // TODO add your handling code here:
+        if (file != null) {
+            JavaRunner jr = new JavaRunner(file.getAbsolutePath());
+            jr.callCompile();
+        }
+    }//GEN-LAST:event_compileBActionPerformed
+
+    private void runBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runBActionPerformed
+        // TODO add your handling code here:
+        JavaRunner jr = new JavaRunner(file.getAbsolutePath());
+        try {
+            jr.callRun();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_runBActionPerformed
+
+    private void ssBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssBActionPerformed
+        // TODO add your handling code here:
+        screenshot screnss = new screenshot();
+        screnss.calSS();
+    }//GEN-LAST:event_ssBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -543,6 +613,7 @@ public class MenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton boldB;
     private javax.swing.JButton colorApply;
     private javax.swing.JButton colorPicker;
+    private javax.swing.JButton compileB;
     private javax.swing.JButton fontApply;
     private javax.swing.JButton fontChooser;
     private javax.swing.JButton hlColorB;
@@ -550,6 +621,7 @@ public class MenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     protected javax.swing.JLabel kalimat;
@@ -558,8 +630,10 @@ public class MenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton openB;
     private javax.swing.JPanel panelColor;
     private javax.swing.JButton pasteB;
+    private javax.swing.JButton runB;
     private javax.swing.JButton saveB;
     protected javax.swing.JLabel spesification;
+    private javax.swing.JButton ssB;
     protected javax.swing.JTextPane textPanel;
     private javax.swing.JLabel textPreview;
     private javax.swing.JButton underlineB;

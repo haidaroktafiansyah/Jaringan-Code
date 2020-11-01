@@ -29,7 +29,8 @@ public class WriteFileWithThread extends Thread {
     public void run() {
         try {
             String str = data;
-            try ( BufferedWriter writer = new BufferedWriter(new FileWriter(nama + ".java"))) {
+            FileWriter fileWritter = new FileWriter(nama, true);
+            try ( BufferedWriter writer = new BufferedWriter(fileWritter)) {
                 writer.write(str);
             }
 
