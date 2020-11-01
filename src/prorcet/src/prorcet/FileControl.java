@@ -16,7 +16,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-
 /**
  *
  * @author haida
@@ -28,41 +27,46 @@ public class FileControl {
     boolean append = true;
     FileHandler handler;
     Logger logger;
-    
+
     public FileControl() throws IOException {
-        
+
         handler = new FileHandler("default.log", append);
 
         logger = Logger.getLogger("haidar logger");
 
         logger.addHandler(handler);
-        
+
         SimpleFormatter formatter = new SimpleFormatter();
-        
-        handler.setFormatter(formatter); 
+
+        handler.setFormatter(formatter);
     }
 
     protected File callOpen() {
 
-        File srcFile = chooser();
+        File srcFile = chooser(1);
 
         return srcFile;
     }
 
     protected void callWrite(String data) {
 
-        File fileToSave = chooser();
+        File fileToSave = chooser(2);
 
         writefile(fileToSave.getAbsolutePath(), data);
     }
 
-    private File chooser() {
+    private File chooser(int code) {
 
         jfc.setDialogTitle("Select an JAVA file");
         jfc.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("java", "java");
         jfc.addChoosableFileFilter(filter);
-        int returnValue = jfc.showOpenDialog(null);
+        int returnValue;
+        if (code == 1) {
+            returnValue = jfc.showOpenDialog(null);
+        }else{
+            returnValue = jfc.showSaveDialog(null);
+        }
         File selectedFile = null;
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
