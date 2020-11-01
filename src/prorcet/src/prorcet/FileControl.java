@@ -15,6 +15,7 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 
 /**
@@ -36,6 +37,10 @@ public class FileControl {
         logger = Logger.getLogger("haidar logger");
 
         logger.addHandler(handler);
+        
+        SimpleFormatter formatter = new SimpleFormatter();
+        
+        handler.setFormatter(formatter); 
     }
 
     protected File callOpen() {
