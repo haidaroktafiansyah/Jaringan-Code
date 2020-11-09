@@ -7,8 +7,8 @@ package haidar.minggu10;
 
 import java.net.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
 
 public class serverBasic{
     public static void main(String[] args)throws IOException {
@@ -19,25 +19,6 @@ public class serverBasic{
             new server(ss.accept(), urut).start();
             System.out.println("client ke-" + urut + "Masuk");
             urut++;
-        }
-    }
-}
-
-class server extends Thread{
-    static Socket sc = null;
-    int angka = 0;
-    server(Socket a, int angka){
-        this.angka = angka;
-        this.sc = a;
-    }
-    @Override
-    public void run(){
-        System.out.println("Client Connect "+sc.getInetAddress() + " onPort " + sc.getPort());
-        try{
-            PrintWriter out = new PrintWriter(sc.getOutputStream(), true);
-            out.println("Sealamat Datang Client ke- " +angka);
-        }catch(IOException ex){
-            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
